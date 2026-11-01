@@ -48,8 +48,6 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
   onEditPrompt,
   onDeletePrompt
 }) => {
-  if (!isOpen || !prompt) return null;
-
   const isAr = language === 'ar';
   const [activeTab, setActiveTab] = useState<'fr' | 'ar' | 'both'>('fr');
   const [variableValues, setVariableValues] = useState<Record<string, string>>({});
@@ -61,9 +59,12 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
   const [isIllustrating, setIsIllustrating] = useState(false);
   const [illustrationError, setIllustrationError] = useState<string | null>(null);
 
+  const promptFr = prompt?.prompt_fr || '';
+  const promptAr = prompt?.prompt_ar || '';
+
   // Extract variables from French and Arabic prompts
-  const variablesFr = useMemo(() => extractVariables(prompt.prompt_fr), [prompt.prompt_fr]);
-  const variablesAr = useMemo(() => extractVariables(prompt.prompt_ar), [prompt.prompt_ar]);
+  const variablesFr = useMemo(() => extractVariables(promptFr), [promptFr]);
+  const variablesAr = useMemo(() => extractVariables(promptAr), [promptAr]);
 
   // Combined unique variables for the interactive editor
   const allVariables = useMemo(() => {
@@ -78,13 +79,22 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
 
   // Current prompt texts with variables dynamically replaced
   const replacedFr = useMemo(
-    () => replaceVariables(prompt.prompt_fr, variableValues),
-    [prompt.prompt_fr, variableValues]
+    () => replaceVariables(promptFr, variableValues),
+    [promptFr, variableValues]
   );
   const replacedAr = useMemo(
-    () => replaceVariables(prompt.prompt_ar, variableValues),
-    [prompt.prompt_ar, variableValues]
+    () => replaceVariables(promptAr, variableValues),
+    [promptAr, variableValues]
   );
+
+  const promptId = prompt?.id;
+  useEffect(() => {
+    setIllustrationImage(null);
+    setIllustrationError(null);
+    setIsIllustrating(false);
+    setVariableValues({});
+    setCopiedType(null);
+  }, [promptId]);
 
   const handleVariableChange = (key: string, val: string) => {
     setVariableValues(prev => ({ ...prev, [key]: val }));
@@ -95,6 +105,7 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
   };
 
   const handleCopyAction = (type: 'fr' | 'ar' | 'both' | 'slash') => {
+    if (!prompt) return;
     if (type === 'fr') {
       onCopyFr(replacedFr);
     } else if (type === 'ar') {
@@ -109,13 +120,8 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
     setTimeout(() => setCopiedType(null), 2000);
   };
 
-  useEffect(() => {
-    setIllustrationImage(null);
-    setIllustrationError(null);
-    setIsIllustrating(false);
-  }, [prompt.id]);
-
   const fetchIllustration = async () => {
+    if (!prompt) return;
     setIsIllustrating(true);
     setIllustrationError(null);
 
@@ -164,6 +170,8 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
         return isAr ? 'متوسط' : 'Intermédiaire';
     }
   };
+
+  if (!isOpen || !prompt) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">

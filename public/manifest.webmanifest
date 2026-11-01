@@ -6,10 +6,14 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "window-controls-overlay", "minimal-ui"],
   "orientation": "any",
-  "theme_color": "#0f172a",
-  "background_color": "#0f172a",
-  "categories": ["productivity", "utilities", "education"],
+  "theme_color": "#020617",
+  "background_color": "#020617",
+  "lang": "fr",
+  "dir": "auto",
+  "categories": ["productivity", "utilities", "developer-tools", "education"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/icons/icon-192.png",
@@ -34,6 +38,44 @@
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Tous les prompts",
+      "short_name": "Prompts",
+      "description": "Explorer les 300 prompts IA",
+      "url": "/?section=prompts",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Prompts Favoris",
+      "short_name": "Favoris",
+      "description": "Accéder directement aux favoris",
+      "url": "/?section=favorites",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Récemment utilisés",
+      "short_name": "Récents",
+      "description": "Consulter l'historique des prompts",
+      "url": "/?section=recent",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }

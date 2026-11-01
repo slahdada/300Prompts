@@ -22,7 +22,12 @@ async function startServer() {
       throw new Error('GEMINI_API_KEY is not configured in the environment.');
     }
     return new GoogleGenAI({
-      apiKey
+      apiKey,
+      httpOptions: {
+        headers: {
+          'User-Agent': 'aistudio-build',
+        },
+      },
     });
   };
 

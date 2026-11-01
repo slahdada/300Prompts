@@ -30,8 +30,6 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
   initialPrompt,
   language
 }) => {
-  if (!isOpen) return null;
-
   const isAr = language === 'ar';
   const isEditing = Boolean(initialPrompt);
 
@@ -144,6 +142,8 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
     onSave(savedPrompt);
     onClose();
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md overflow-y-auto animate-in fade-in">

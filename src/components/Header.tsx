@@ -64,32 +64,32 @@ export const Header: React.FC<HeaderProps> = ({
   const isAr = language === 'ar';
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-slate-900/85 dark:bg-slate-950/85 border-b border-slate-800/80 text-slate-100 transition-colors">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-3">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-slate-900/90 dark:bg-slate-950/90 border-b border-slate-800/80 text-slate-100 transition-colors">
+      <div className="w-full max-w-7xl mx-auto px-2.5 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-3 min-w-0">
         {/* Left: Mobile Menu & Logo */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3 min-w-0 shrink">
           <button
             onClick={onToggleMobileMenu}
-            className="md:hidden p-2 text-slate-300 hover:text-white hover:bg-slate-800/80 rounded-xl transition-colors"
+            className="md:hidden p-1.5 sm:p-2 text-slate-300 hover:text-white hover:bg-slate-800/80 rounded-xl transition-colors shrink-0"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
 
-          <div className="flex items-center gap-2.5 cursor-pointer select-none">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/25 ring-1 ring-white/20">
-              <Sparkles className="w-5 h-5 text-white" />
+          <div className="flex items-center gap-2 sm:gap-2.5 cursor-pointer select-none min-w-0">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/25 ring-1 ring-white/20 shrink-0">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-1.5">
-                <span className="font-bold text-base sm:text-lg tracking-tight bg-gradient-to-r from-white via-slate-100 to-indigo-200 bg-clip-text text-transparent">
+            <div className="flex flex-col min-w-0">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <span className="font-bold text-sm sm:text-base tracking-tight bg-gradient-to-r from-white via-slate-100 to-indigo-200 bg-clip-text text-transparent truncate">
                   PROMPT MASTER
                 </span>
-                <span className="hidden sm:inline-flex text-[10px] font-semibold tracking-wider uppercase px-1.5 py-0.5 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                <span className="hidden sm:inline-flex text-[10px] font-semibold tracking-wider uppercase px-1.5 py-0.5 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0">
                   300 PRO
                 </span>
               </div>
-              <span className="text-[11px] text-slate-400 font-medium truncate max-w-[170px] sm:max-w-none">
+              <span className="text-[10px] sm:text-[11px] text-slate-400 font-medium truncate hidden md:block">
                 {isAr ? 'المكتبة الشاملة لأوامر الذكاء الاصطناعي' : 'Bibliothèque universelle de prompts IA'}
               </span>
             </div>
@@ -109,11 +109,11 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Right: Actions, Language, Theme, Install */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           {/* Quick Favorites Button */}
           <button
             onClick={onSelectFavorites}
-            className="relative p-2 text-slate-300 hover:text-amber-400 hover:bg-slate-800/80 rounded-xl transition-colors"
+            className="relative p-1.5 sm:p-2 text-slate-300 hover:text-amber-400 hover:bg-slate-800/80 rounded-xl transition-colors shrink-0"
             title={isAr ? 'المفضلة' : 'Favoris'}
             aria-label="Favoris"
           >
@@ -125,10 +125,10 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </button>
 
-          {/* Mode Lecture Button */}
+          {/* Mode Lecture Button (Desktop only) */}
           <button
             onClick={onToggleReaderMode}
-            className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded-xl border transition-all ${
+            className={`hidden md:inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded-xl border transition-all ${
               isReaderMode
                 ? 'bg-indigo-600 text-white border-indigo-400 shadow-md shadow-indigo-600/30 ring-1 ring-white/20'
                 : 'bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border-slate-700/60'
@@ -164,15 +164,15 @@ export const Header: React.FC<HeaderProps> = ({
             <span>{isAr ? 'أمر جديد' : 'Nouveau prompt'}</span>
           </button>
 
-          {/* PWA Install Button */}
+          {/* PWA Install Button (Tablet & Desktop) */}
           {(!isInstalled || isInstallable) && (
             <button
               onClick={onInstallClick}
-              className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 transition-all hover:scale-[1.02]"
+              className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 transition-all hover:scale-[1.02]"
               title={isAr ? 'تثبيت التطبيق على جهازك' : 'Installer l’application sur votre appareil'}
             >
               <Download className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">
+              <span className="hidden md:inline">
                 {isAr ? 'تثبيت PWA' : 'Installer PWA'}
               </span>
             </button>
@@ -181,17 +181,17 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Language Switch */}
           <button
             onClick={() => onLanguageChange(isAr ? 'fr' : 'ar')}
-            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700/60 transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-1.5 sm:px-2.5 sm:py-1.5 text-xs font-semibold rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700/60 transition-colors shrink-0"
             title={isAr ? 'Changer en Français' : 'التحويل إلى العربية'}
           >
-            <Languages className="w-3.5 h-3.5 text-indigo-400" />
-            <span>{isAr ? 'FR' : 'العربية'}</span>
+            <Languages className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+            <span className="text-xs">{isAr ? 'FR' : 'العربية'}</span>
           </button>
 
           {/* Theme Toggle */}
           <button
             onClick={onThemeToggle}
-            className="p-2 text-slate-300 hover:text-white hover:bg-slate-800/80 rounded-xl transition-colors"
+            className="p-1.5 sm:p-2 text-slate-300 hover:text-white hover:bg-slate-800/80 rounded-xl transition-colors shrink-0"
             title={isAr ? 'تبديل المظهر' : 'Basculer le thème'}
             aria-label="Toggle theme"
           >
@@ -205,7 +205,7 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Mobile search bar with Dynamic Autocomplete */}
-      <div className="sm:hidden px-3 pb-3">
+      <div className="sm:hidden px-2.5 pb-2.5 w-full max-w-full">
         <SearchAutocomplete
           searchQuery={searchQuery}
           onSearchChange={onSearchChange}

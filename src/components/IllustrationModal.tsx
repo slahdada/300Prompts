@@ -34,13 +34,11 @@ export const IllustrationModal: React.FC<IllustrationModalProps> = ({
   onRegenerate,
   language
 }) => {
-  if (!isOpen || !prompt) return null;
-
   const isAr = language === 'ar';
   const [copied, setCopied] = useState(false);
 
   const handleDownload = () => {
-    if (!imageUrl) return;
+    if (!imageUrl || !prompt) return;
     const a = document.createElement('a');
     a.href = imageUrl;
     a.download = `illustration-${prompt.slash.replace(/[/]/g, '')}.png`;
@@ -67,6 +65,8 @@ export const IllustrationModal: React.FC<IllustrationModalProps> = ({
       setTimeout(() => setCopied(false), 2000);
     }
   };
+
+  if (!isOpen || !prompt) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">

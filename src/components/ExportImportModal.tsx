@@ -36,8 +36,6 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
   onResetDefaults,
   language
 }) => {
-  if (!isOpen) return null;
-
   const isAr = language === 'ar';
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(
@@ -142,6 +140,8 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
       });
     }
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md animate-in fade-in">

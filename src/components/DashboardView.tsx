@@ -40,21 +40,21 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   const isAr = language === 'ar';
 
   return (
-    <div className="space-y-6 pb-12 animate-in fade-in duration-200">
+    <div className="space-y-4 sm:space-y-6 pb-12 w-full max-w-full overflow-hidden animate-in fade-in duration-200">
       {/* Hero Welcome Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-900/60 via-slate-900/80 to-purple-900/60 border border-indigo-500/30 p-6 sm:p-8 backdrop-blur-xl shadow-xl">
+      <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-indigo-900/60 via-slate-900/80 to-purple-900/60 border border-indigo-500/30 p-4 sm:p-6 md:p-8 backdrop-blur-xl shadow-xl w-full max-w-full">
         <div className="absolute -right-10 -top-10 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="relative z-10 max-w-2xl space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>
+        <div className="relative z-10 max-w-2xl space-y-2.5 sm:space-y-3">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-[11px] sm:text-xs font-semibold">
+            <Sparkles className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">
               {isAr
                 ? '300 أمر احترافي متكامل ثنائي اللغة'
                 : '300 prompts professionnels bilingues (FR / AR)'}
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-tight">
             {isAr
               ? 'مكتبة الأوامر الاحترافية لنماذج الذكاء الاصطناعي'
               : 'La Bibliothèque Universelle de Prompts IA'}
@@ -66,25 +66,25 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               : 'Structurez, automatisez et accélérez vos projets grâce à des templates avec variables dynamiques conçus pour ChatGPT, Gemini, Claude, Cursor et Google AI Studio.'}
           </p>
 
-          <div className="pt-2 flex items-center gap-3 flex-wrap">
+          <div className="pt-2 flex items-center gap-2.5 sm:gap-3 flex-wrap">
             <button
               onClick={onExploreAll}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/30 transition-all hover:scale-[1.02] active:scale-[0.98]"
+              className="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/30 transition-all hover:scale-[1.02] active:scale-[0.98] shrink-0"
             >
               <span>{isAr ? 'استكشاف كافة الأوامر (300)' : 'Explorer les 300 prompts'}</span>
-              <ArrowRight className={`w-4 h-4 ${isAr ? 'rotate-180' : ''}`} />
+              <ArrowRight className={`w-4 h-4 shrink-0 ${isAr ? 'rotate-180' : ''}`} />
             </button>
 
-            <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
-              <Terminal className="w-4 h-4 text-indigo-400" />
-              <span>/dev-arch-clean, /apps-pwa-offline...</span>
+            <div className="flex items-center gap-1.5 text-xs text-slate-400 font-mono truncate max-w-full">
+              <Terminal className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+              <span className="truncate">/dev-arch-clean, /apps-pwa-offline...</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* KPI Stats Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 w-full">
         <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-lg">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-medium text-slate-400">
@@ -175,12 +175,12 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 w-full">
           {CATEGORIES.map(cat => (
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
-              className="group p-4 rounded-2xl bg-slate-900/70 hover:bg-slate-900 border border-slate-800 hover:border-indigo-500/50 shadow-md hover:shadow-indigo-500/10 transition-all text-start flex flex-col justify-between"
+              className="group p-3.5 sm:p-4 rounded-2xl bg-slate-900/70 hover:bg-slate-900 border border-slate-800 hover:border-indigo-500/50 shadow-md hover:shadow-indigo-500/10 transition-all text-start flex flex-col justify-between w-full min-w-0 max-w-full overflow-hidden"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">

@@ -2,12 +2,14 @@
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
     <title>Prompt Master Library — Bibliothèque universelle de prompts IA</title>
     <meta name="description" content="Bibliothèque universelle de 300 prompts IA professionnels bilingues français et arabe pour ChatGPT, Gemini, Claude et Cursor." />
     
     <!-- PWA Meta tags -->
-    <meta name="theme-color" content="#0f172a" />
+    <meta name="application-name" content="Prompt Master Library" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0f172a" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#020617" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -27,8 +29,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white min-h-screen">
-    <div id="root"></div>
+  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white min-h-screen w-full max-w-full overflow-x-hidden">
+    <div id="root" class="w-full max-w-full overflow-x-hidden"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

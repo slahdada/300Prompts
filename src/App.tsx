@@ -49,6 +49,7 @@ import { PromptFormModal } from './components/PromptFormModal';
 import { DeleteConfirmModal } from './components/DeleteConfirmModal';
 import { ExportImportModal } from './components/ExportImportModal';
 import { PWAInstallModal } from './components/PWAInstallModal';
+import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { DashboardView } from './components/DashboardView';
 import { ToastContainer, ToastMessage } from './components/Toast';
 import { OfflineIndicator } from './components/OfflineIndicator';
@@ -462,7 +463,7 @@ export default function App() {
   const isAr = language === 'ar';
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
       {/* Top Header */}
       <Header
         language={language}
@@ -506,7 +507,7 @@ export default function App() {
 
       {/* Main Layout Area */}
       <div
-        className={`flex-1 w-full mx-auto flex transition-all duration-300 ${
+        className={`flex-1 w-full max-w-full mx-auto flex transition-all duration-300 min-w-0 ${
           isReaderMode ? 'max-w-[102rem] px-2 sm:px-6' : 'max-w-7xl'
         }`}
       >
@@ -535,7 +536,7 @@ export default function App() {
         />
 
         {/* Content View Container */}
-        <main className="flex-1 min-w-0 p-3 sm:p-6 overflow-y-auto">
+        <main className="flex-1 min-w-0 w-full max-w-full p-2.5 sm:p-6 overflow-y-auto overflow-x-hidden">
           {/* Reader Mode Active Notification Banner */}
           {isReaderMode && (
             <div className="flex items-center justify-between gap-3 p-3 px-4 mb-4 rounded-2xl bg-gradient-to-r from-indigo-950/90 via-slate-900/90 to-purple-950/90 border border-indigo-500/40 text-indigo-100 text-xs shadow-lg backdrop-blur-md animate-in slide-in-from-top-2">
@@ -582,11 +583,11 @@ export default function App() {
           ) : (
             <div className="space-y-5 pb-12">
               {/* Filter and Control Bar */}
-              <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
-                <div className="flex items-center justify-between gap-3 flex-wrap">
-                  <div>
-                    <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                      <span>
+              <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3 w-full min-w-0 max-w-full overflow-hidden">
+                <div className="flex items-center justify-between gap-2.5 sm:gap-3 flex-wrap">
+                  <div className="min-w-0">
+                    <h2 className="text-base sm:text-lg font-bold text-white flex items-center gap-2 flex-wrap">
+                      <span className="truncate">
                         {currentSection === 'favorites'
                           ? isAr
                             ? 'الأوامر المفضلة'
@@ -603,11 +604,11 @@ export default function App() {
                           ? 'جميع الأوامر البرمجية والمهنية'
                           : 'Tous les prompts professionnels'}
                       </span>
-                      <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                      <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0">
                         {filteredPrompts.length}
                       </span>
                     </h2>
-                    <p className="text-xs text-slate-400 mt-0.5">
+                    <p className="text-xs text-slate-400 mt-0.5 truncate">
                       {isAr
                         ? 'انقر على أي أمر لمعاينة المتغيرات ونسخه بضغطة زر'
                         : 'Cliquez sur un prompt pour personnaliser ses variables et le copier'}
@@ -626,7 +627,7 @@ export default function App() {
                         setSelectedAiModel('all');
                         setSearchQuery('');
                       }}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 transition-colors"
+                      className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 transition-colors shrink-0"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
                       <span>{isAr ? 'إعادة ضبط الفلاتر' : 'Réinitialiser filtres'}</span>
@@ -635,7 +636,7 @@ export default function App() {
                 </div>
 
                 {/* Filter Pills: Levels & AI Models */}
-                <div className="flex items-center gap-2 flex-wrap pt-2 border-t border-slate-800/80 text-xs">
+                <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap pt-2 border-t border-slate-800/80 text-xs w-full min-w-0">
                   {/* Level selector */}
                   <span className="text-slate-400 text-[11px] font-semibold uppercase tracking-wider">
                     {isAr ? 'المستوى:' : 'Niveau :'}
@@ -747,60 +748,80 @@ export default function App() {
       </div>
 
       {/* Modals */}
-      <PromptDetailModal
-        prompt={selectedDetailPrompt}
-        isOpen={Boolean(selectedDetailPrompt)}
-        onClose={() => setSelectedDetailPrompt(null)}
-        language={language}
-        onCopyFr={text => handleCopyFr(text)}
-        onCopyAr={text => handleCopyAr(text)}
-        onCopyBoth={(frText, arText) => handleCopyBoth(frText, arText)}
-        onToggleFavorite={id => handleToggleFavorite(id)}
-        isFavorite={Boolean(selectedDetailPrompt && favoriteIds.has(selectedDetailPrompt.id))}
-        onEditPrompt={p => {
-          setEditingPrompt(p);
-          setFormModalOpen(true);
-        }}
-        onDeletePrompt={p => {
-          setDeleteModalPrompt(p);
-        }}
-      />
+      {selectedDetailPrompt && (
+        <PromptDetailModal
+          prompt={selectedDetailPrompt}
+          isOpen={Boolean(selectedDetailPrompt)}
+          onClose={() => setSelectedDetailPrompt(null)}
+          language={language}
+          onCopyFr={text => handleCopyFr(text)}
+          onCopyAr={text => handleCopyAr(text)}
+          onCopyBoth={(frText, arText) => handleCopyBoth(frText, arText)}
+          onToggleFavorite={id => handleToggleFavorite(id)}
+          isFavorite={favoriteIds.has(selectedDetailPrompt.id)}
+          onEditPrompt={p => {
+            setEditingPrompt(p);
+            setFormModalOpen(true);
+          }}
+          onDeletePrompt={p => {
+            setDeleteModalPrompt(p);
+          }}
+        />
+      )}
 
-      <PromptFormModal
-        isOpen={formModalOpen}
-        onClose={() => {
-          setFormModalOpen(false);
-          setEditingPrompt(null);
-        }}
-        onSave={handleSavePrompt}
-        initialPrompt={editingPrompt}
-        language={language}
-      />
+      {formModalOpen && (
+        <PromptFormModal
+          isOpen={formModalOpen}
+          onClose={() => {
+            setFormModalOpen(false);
+            setEditingPrompt(null);
+          }}
+          onSave={handleSavePrompt}
+          initialPrompt={editingPrompt}
+          language={language}
+        />
+      )}
 
-      <DeleteConfirmModal
-        isOpen={Boolean(deleteModalPrompt)}
-        onClose={() => setDeleteModalPrompt(null)}
-        onConfirm={handleDeletePrompt}
-        prompt={deleteModalPrompt}
-        language={language}
-      />
+      {deleteModalPrompt && (
+        <DeleteConfirmModal
+          isOpen={Boolean(deleteModalPrompt)}
+          onClose={() => setDeleteModalPrompt(null)}
+          onConfirm={handleDeletePrompt}
+          prompt={deleteModalPrompt}
+          language={language}
+        />
+      )}
 
-      <ExportImportModal
-        isOpen={exportImportModalOpen}
-        onClose={() => setExportImportModalOpen(false)}
-        prompts={prompts}
-        onImportPrompts={handleImportPrompts}
-        onResetDefaults={handleResetDefaults}
-        language={language}
-      />
+      {exportImportModalOpen && (
+        <ExportImportModal
+          isOpen={exportImportModalOpen}
+          onClose={() => setExportImportModalOpen(false)}
+          prompts={prompts}
+          onImportPrompts={handleImportPrompts}
+          onResetDefaults={handleResetDefaults}
+          language={language}
+        />
+      )}
 
-      <PWAInstallModal
-        isOpen={pwaModalOpen}
-        onClose={() => setPwaModalOpen(false)}
+      {pwaModalOpen && (
+        <PWAInstallModal
+          isOpen={pwaModalOpen}
+          onClose={() => setPwaModalOpen(false)}
+          isInstallable={isInstallable}
+          isInstalled={isInstalled}
+          isIOS={isIOS}
+          onInstall={installApp}
+          language={language}
+        />
+      )}
+
+      {/* Floating Mobile PWA Install Banner */}
+      <PWAInstallBanner
         isInstallable={isInstallable}
         isInstalled={isInstalled}
         isIOS={isIOS}
         onInstall={installApp}
+        onOpenModal={() => setPwaModalOpen(true)}
         language={language}
       />
 

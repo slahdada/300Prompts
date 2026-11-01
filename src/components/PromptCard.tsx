@@ -80,13 +80,13 @@ export const PromptCard: React.FC<PromptCardProps> = ({
   return (
     <div
       onClick={() => onSelectPrompt(prompt)}
-      className="group relative flex flex-col justify-between p-4 sm:p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-900/90 dark:bg-slate-900/60 dark:hover:bg-slate-800/80 border border-slate-800 hover:border-indigo-500/50 shadow-lg hover:shadow-indigo-500/10 transition-all duration-200 cursor-pointer text-start"
+      className="group relative flex flex-col justify-between p-3.5 sm:p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-900/90 dark:bg-slate-900/60 dark:hover:bg-slate-800/80 border border-slate-800 hover:border-indigo-500/50 shadow-lg hover:shadow-indigo-500/10 transition-all duration-200 cursor-pointer text-start w-full min-w-0 max-w-full overflow-hidden"
     >
       <div>
         {/* Top Header: Slash Command + Level Badge + Favorite */}
         <div className="flex items-center justify-between gap-2 mb-3">
-          <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-400 border border-indigo-500/30 group-hover:bg-indigo-500/25 transition-colors">
+          <div className="flex items-center gap-1.5 flex-wrap min-w-0">
+            <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-400 border border-indigo-500/30 group-hover:bg-indigo-500/25 transition-colors break-all">
               {prompt.slash}
             </span>
 
