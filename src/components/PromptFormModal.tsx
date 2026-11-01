@@ -146,16 +146,16 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md overflow-y-auto animate-in fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 dark:bg-black/75 backdrop-blur-md overflow-y-auto animate-in fade-in">
       <div
-        className="relative w-full max-w-2xl rounded-3xl bg-slate-900 border border-slate-700/80 shadow-2xl overflow-hidden my-auto text-slate-100"
+        className="relative w-full max-w-2xl rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 shadow-2xl overflow-hidden my-auto text-slate-900 dark:text-slate-100"
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 sm:p-5 border-b border-slate-800 bg-slate-950/60">
+        <div className="flex items-center justify-between p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-indigo-400" />
-            <h2 className="text-base sm:text-lg font-bold">
+            <Sparkles className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+            <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
               {isEditing
                 ? isAr
                   ? 'تعديل الأمر'
@@ -167,7 +167,7 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg"
+            className="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -176,7 +176,7 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 max-h-[80vh] overflow-y-auto custom-scrollbar">
           {error && (
-            <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs">
+            <div className="flex items-center gap-2 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-300 text-xs">
               <AlertCircle className="w-4 h-4 shrink-0" />
               <span>{error}</span>
             </div>
@@ -185,7 +185,7 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
           {/* Row 1: Slash + Category */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 {isAr ? 'الأمر السريع (Slash Command)' : 'Commande Slash'}
               </label>
               <input
@@ -193,19 +193,19 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
                 value={slash}
                 onChange={e => setSlash(e.target.value)}
                 placeholder="/mon-code"
-                className="w-full px-3 py-2 text-xs font-mono rounded-xl bg-slate-950 border border-slate-700 focus:border-indigo-500 focus:outline-none text-indigo-300"
+                className="w-full px-3 py-2 text-xs font-mono rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 focus:border-indigo-500 focus:outline-none text-indigo-600 dark:text-indigo-300"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 {isAr ? 'التصنيف' : 'Catégorie'}
               </label>
               <select
                 value={categoryId}
                 onChange={e => setCategoryId(e.target.value)}
-                className="w-full px-3 py-2 text-xs rounded-xl bg-slate-950 border border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-200"
+                className="w-full px-3 py-2 text-xs rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-900 dark:text-slate-200"
               >
                 {CATEGORIES.map(c => (
                   <option key={c.id} value={c.id}>
@@ -219,7 +219,7 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
           {/* Titles */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Titre (Français)
               </label>
               <input
@@ -227,11 +227,11 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
                 value={titleFr}
                 onChange={e => setTitleFr(e.target.value)}
                 placeholder="Ex: Architecte Clean Architecture"
-                className="w-full px-3 py-2 text-xs rounded-xl bg-slate-950 border border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-200"
+                className="w-full px-3 py-2 text-xs rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-900 dark:text-slate-200"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 العنوان (بالعربية)
               </label>
               <input
@@ -240,7 +240,7 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
                 value={titleAr}
                 onChange={e => setTitleAr(e.target.value)}
                 placeholder="مثال: مهندس العمارة النظيفة"
-                className="w-full px-3 py-2 text-xs rounded-xl bg-slate-950 border border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-200 font-tajawal text-right"
+                className="w-full px-3 py-2 text-xs rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-900 dark:text-slate-200 font-tajawal text-right"
               />
             </div>
           </div>
@@ -248,7 +248,7 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
           {/* Functions */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 Rôle / Fonction (Français)
               </label>
               <input
@@ -256,11 +256,11 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
                 value={functionFr}
                 onChange={e => setFunctionFr(e.target.value)}
                 placeholder="Brève description de la mission"
-                className="w-full px-3 py-2 text-xs rounded-xl bg-slate-950 border border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-200"
+                className="w-full px-3 py-2 text-xs rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-900 dark:text-slate-200"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 الدور / الوظيفة (بالعربية)
               </label>
               <input
@@ -269,14 +269,14 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
                 value={functionAr}
                 onChange={e => setFunctionAr(e.target.value)}
                 placeholder="وصف مختصر لمهمة الأمر"
-                className="w-full px-3 py-2 text-xs rounded-xl bg-slate-950 border border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-200 font-tajawal text-right"
+                className="w-full px-3 py-2 text-xs rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-900 dark:text-slate-200 font-tajawal text-right"
               />
             </div>
           </div>
 
           {/* Prompt Texts with Variables instruction */}
           <div className="space-y-1">
-            <label className="block text-xs font-semibold text-slate-300">
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
               Prompt Français complet (Utilisez des crochets pour les variables : [PROJET], [OBJECTIF])
             </label>
             <textarea
@@ -284,12 +284,12 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
               value={promptFr}
               onChange={e => setPromptFr(e.target.value)}
               placeholder="Tu es un expert en... Conçois [PROJET] avec [TECHNO]..."
-              className="w-full p-3 text-xs font-mono rounded-xl bg-slate-950 border border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-200"
+              className="w-full p-3 text-xs font-mono rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-900 dark:text-slate-200"
             />
           </div>
 
           <div className="space-y-1">
-            <label className="block text-xs font-semibold text-slate-300">
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
               النص الكامل للأمر بالعربية (استخدم الأقواس للمتغيرات: [المشروع]، [الهدف])
             </label>
             <textarea
@@ -298,20 +298,20 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
               value={promptAr}
               onChange={e => setPromptAr(e.target.value)}
               placeholder="أنت خبير محترف في... قم ببناء [المشروع] باستخدام [التقنية]..."
-              className="w-full p-3 text-xs font-mono rounded-xl bg-slate-950 border border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-200 font-tajawal text-right"
+              className="w-full p-3 text-xs font-mono rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-900 dark:text-slate-200 font-tajawal text-right"
             />
           </div>
 
           {/* Level & Tags */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 {isAr ? 'المستوى' : 'Niveau'}
               </label>
               <select
                 value={level}
                 onChange={e => setLevel(e.target.value as PromptLevel)}
-                className="w-full px-3 py-2 text-xs rounded-xl bg-slate-950 border border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-200"
+                className="w-full px-3 py-2 text-xs rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-900 dark:text-slate-200"
               >
                 <option value="debutant">{isAr ? 'مبتدئ' : 'Débutant'}</option>
                 <option value="intermediaire">{isAr ? 'متوسط' : 'Intermédiaire'}</option>
@@ -320,7 +320,7 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                 {isAr ? 'الكلمات المفتاحية (مفصولة بفواصل)' : 'Mots-clés (séparés par virgules)'}
               </label>
               <input
@@ -328,14 +328,14 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
                 value={tagsStr}
                 onChange={e => setTagsStr(e.target.value)}
                 placeholder="architecture, react, ddd"
-                className="w-full px-3 py-2 text-xs rounded-xl bg-slate-950 border border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-200"
+                className="w-full px-3 py-2 text-xs rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-900 dark:text-slate-200"
               />
             </div>
           </div>
 
           {/* AI Compatibility Checkboxes */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
               {isAr ? 'توافق نماذج الذكاء الاصطناعي' : 'Compatibilité Modèles IA'}
             </label>
             <div className="flex flex-wrap gap-2">
@@ -348,8 +348,8 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
                     onClick={() => toggleAi(model)}
                     className={`px-2.5 py-1 text-xs rounded-lg border transition-all ${
                       isSelected
-                        ? 'bg-indigo-600/30 text-indigo-300 border-indigo-500/50 font-medium'
-                        : 'bg-slate-950 text-slate-400 border-slate-800 hover:border-slate-700'
+                        ? 'bg-indigo-600/15 text-indigo-600 border-indigo-300 dark:bg-indigo-600/30 dark:text-indigo-300 dark:border-indigo-500/50 font-medium'
+                        : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-950 dark:text-slate-400 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
                     }`}
                   >
                     {model}
@@ -360,17 +360,17 @@ export const PromptFormModal: React.FC<PromptFormModalProps> = ({
           </div>
 
           {/* Form Actions */}
-          <div className="pt-3 border-t border-slate-800 flex items-center justify-end gap-2">
+          <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-end gap-2">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800"
+              className="px-4 py-2 rounded-xl text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             >
               {isAr ? 'إلغاء' : 'Annuler'}
             </button>
             <button
               type="submit"
-              className="flex items-center gap-1.5 px-5 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/30 transition-all"
+              className="flex items-center gap-1.5 px-5 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95"
             >
               <Save className="w-4 h-4" />
               <span>{isAr ? 'حفظ الأمر' : 'Enregistrer le prompt'}</span>

@@ -64,13 +64,13 @@ export const Header: React.FC<HeaderProps> = ({
   const isAr = language === 'ar';
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-slate-900/90 dark:bg-slate-950/90 border-b border-slate-800/80 text-slate-100 transition-colors">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/90 dark:bg-slate-950/90 border-b border-slate-200 dark:border-slate-800/80 text-slate-800 dark:text-slate-100 transition-colors">
       <div className="w-full max-w-7xl mx-auto px-2.5 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-3 min-w-0">
         {/* Left: Mobile Menu & Logo */}
         <div className="flex items-center gap-1.5 sm:gap-3 min-w-0 shrink">
           <button
             onClick={onToggleMobileMenu}
-            className="md:hidden p-1.5 sm:p-2 text-slate-300 hover:text-white hover:bg-slate-800/80 rounded-xl transition-colors shrink-0"
+            className="md:hidden p-1.5 sm:p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/80 rounded-xl transition-colors shrink-0"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -82,14 +82,14 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
             <div className="flex flex-col min-w-0">
               <div className="flex items-center gap-1.5 min-w-0">
-                <span className="font-bold text-sm sm:text-base tracking-tight bg-gradient-to-r from-white via-slate-100 to-indigo-200 bg-clip-text text-transparent truncate">
+                <span className="font-bold text-sm sm:text-base tracking-tight bg-gradient-to-r from-slate-900 via-indigo-950 to-indigo-700 dark:from-white dark:via-slate-100 dark:to-indigo-200 bg-clip-text text-transparent truncate">
                   PROMPT MASTER
                 </span>
-                <span className="hidden sm:inline-flex text-[10px] font-semibold tracking-wider uppercase px-1.5 py-0.5 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0">
+                <span className="hidden sm:inline-flex text-[10px] font-semibold tracking-wider uppercase px-1.5 py-0.5 rounded-md bg-indigo-500/10 text-indigo-700 border border-indigo-500/20 dark:bg-indigo-500/20 dark:text-indigo-300 dark:border-indigo-500/30 shrink-0">
                   300 PRO
                 </span>
               </div>
-              <span className="text-[10px] sm:text-[11px] text-slate-400 font-medium truncate hidden md:block">
+              <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-medium truncate hidden md:block">
                 {isAr ? 'المكتبة الشاملة لأوامر الذكاء الاصطناعي' : 'Bibliothèque universelle de prompts IA'}
               </span>
             </div>
@@ -113,7 +113,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Quick Favorites Button */}
           <button
             onClick={onSelectFavorites}
-            className="relative p-1.5 sm:p-2 text-slate-300 hover:text-amber-400 hover:bg-slate-800/80 rounded-xl transition-colors shrink-0"
+            className="relative p-1.5 sm:p-2 text-slate-600 dark:text-slate-300 hover:text-amber-500 hover:bg-slate-100 dark:hover:bg-slate-800/80 rounded-xl transition-colors shrink-0"
             title={isAr ? 'المفضلة' : 'Favoris'}
             aria-label="Favoris"
           >
@@ -131,7 +131,7 @@ export const Header: React.FC<HeaderProps> = ({
             className={`hidden md:inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded-xl border transition-all ${
               isReaderMode
                 ? 'bg-indigo-600 text-white border-indigo-400 shadow-md shadow-indigo-600/30 ring-1 ring-white/20'
-                : 'bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border-slate-700/60'
+                : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-300 dark:bg-slate-800/80 dark:hover:bg-slate-700/80 dark:text-slate-200 dark:border-slate-700/60'
             }`}
             title={
               isReaderMode
@@ -143,7 +143,7 @@ export const Header: React.FC<HeaderProps> = ({
                 : 'Mode Lecture : masquer la barre latérale pour une concentration maximale'
             }
           >
-            <BookOpen className={`w-3.5 h-3.5 ${isReaderMode ? 'text-white' : 'text-indigo-400'}`} />
+            <BookOpen className={`w-3.5 h-3.5 ${isReaderMode ? 'text-white' : 'text-indigo-500 dark:text-indigo-400'}`} />
             <span className="hidden sm:inline">
               {isReaderMode
                 ? isAr
@@ -168,7 +168,7 @@ export const Header: React.FC<HeaderProps> = ({
           {(!isInstalled || isInstallable) && (
             <button
               onClick={onInstallClick}
-              className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 transition-all hover:scale-[1.02]"
+              className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 border border-emerald-500/30 dark:bg-emerald-500/15 dark:hover:bg-emerald-500/25 dark:text-emerald-300 transition-all hover:scale-[1.02]"
               title={isAr ? 'تثبيت التطبيق على جهازك' : 'Installer l’application sur votre appareil'}
             >
               <Download className="w-3.5 h-3.5" />
@@ -181,24 +181,24 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Language Switch */}
           <button
             onClick={() => onLanguageChange(isAr ? 'fr' : 'ar')}
-            className="inline-flex items-center gap-1 px-2 py-1.5 sm:px-2.5 sm:py-1.5 text-xs font-semibold rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700/60 transition-colors shrink-0"
+            className="inline-flex items-center gap-1 px-2 py-1.5 sm:px-2.5 sm:py-1.5 text-xs font-semibold rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 dark:bg-slate-800/80 dark:hover:bg-slate-700/80 dark:text-slate-200 dark:border-slate-700/60 transition-colors shrink-0"
             title={isAr ? 'Changer en Français' : 'التحويل إلى العربية'}
           >
-            <Languages className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+            <Languages className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400 shrink-0" />
             <span className="text-xs">{isAr ? 'FR' : 'العربية'}</span>
           </button>
 
           {/* Theme Toggle */}
           <button
             onClick={onThemeToggle}
-            className="p-1.5 sm:p-2 text-slate-300 hover:text-white hover:bg-slate-800/80 rounded-xl transition-colors shrink-0"
-            title={isAr ? 'تبديل المظهر' : 'Basculer le thème'}
-            aria-label="Toggle theme"
+            className="p-1.5 sm:p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/80 rounded-xl transition-all shrink-0 hover:scale-105 active:scale-95"
+            title={theme === 'dark' ? (isAr ? 'تفعيل الوضع الفاتح (نهاري)' : 'Activer le mode clair') : (isAr ? 'تفعيل الوضع الداكن (ليلي)' : 'Activer le mode sombre')}
+            aria-label={theme === 'dark' ? 'Activer le mode clair' : 'Activer le mode sombre'}
           >
             {theme === 'dark' ? (
-              <Sun className="w-4 h-4 text-amber-400" />
+              <Sun className="w-4 h-4 text-amber-400 hover:rotate-45 transition-transform" />
             ) : (
-              <Moon className="w-4 h-4 text-indigo-300" />
+              <Moon className="w-4 h-4 text-indigo-600 hover:-rotate-12 transition-transform" />
             )}
           </button>
         </div>

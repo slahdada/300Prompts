@@ -146,8 +146,12 @@ export default function App() {
     saveTheme(theme);
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
+      document.documentElement.setAttribute('data-theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark');
+      document.documentElement.setAttribute('data-theme', 'light');
     }
   }, [theme]);
 
@@ -463,7 +467,7 @@ export default function App() {
   const isAr = language === 'ar';
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white transition-colors duration-200">
       {/* Top Header */}
       <Header
         language={language}
@@ -539,16 +543,16 @@ export default function App() {
         <main className="flex-1 min-w-0 w-full max-w-full p-2.5 sm:p-6 overflow-y-auto overflow-x-hidden">
           {/* Reader Mode Active Notification Banner */}
           {isReaderMode && (
-            <div className="flex items-center justify-between gap-3 p-3 px-4 mb-4 rounded-2xl bg-gradient-to-r from-indigo-950/90 via-slate-900/90 to-purple-950/90 border border-indigo-500/40 text-indigo-100 text-xs shadow-lg backdrop-blur-md animate-in slide-in-from-top-2">
+            <div className="flex items-center justify-between gap-3 p-3 px-4 mb-4 rounded-2xl bg-gradient-to-r from-indigo-50/95 via-purple-50/90 to-indigo-50/95 dark:from-indigo-950/90 dark:via-slate-900/90 dark:to-purple-950/90 border border-indigo-200 dark:border-indigo-500/40 text-indigo-900 dark:text-indigo-100 text-xs shadow-md dark:shadow-lg backdrop-blur-md animate-in slide-in-from-top-2">
               <div className="flex items-center gap-2.5">
-                <div className="p-1.5 rounded-lg bg-indigo-500/20 text-indigo-400">
+                <div className="p-1.5 rounded-lg bg-indigo-100 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-400">
                   <BookOpen className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="font-semibold text-white">
+                  <span className="font-semibold text-indigo-950 dark:text-white">
                     {isAr ? 'وضع القراءة نشط' : 'Mode Lecture actif'} :
                   </span>{' '}
-                  <span className="text-slate-300">
+                  <span className="text-slate-600 dark:text-slate-300">
                     {isAr
                       ? 'تم تكبير مساحة العرض وإخفاء الشريط الجانبي لقراءة مريحة بدون تشتيت (اضغط Alt+R أو Esc للإلغاء).'
                       : 'Zone de contenu élargie et barre latérale masquée pour une concentration maximale (raccourci Alt+R ou Esc).'}
@@ -583,10 +587,10 @@ export default function App() {
           ) : (
             <div className="space-y-5 pb-12">
               {/* Filter and Control Bar */}
-              <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3 w-full min-w-0 max-w-full overflow-hidden">
+              <div className="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 space-y-3 w-full min-w-0 max-w-full overflow-hidden shadow-sm">
                 <div className="flex items-center justify-between gap-2.5 sm:gap-3 flex-wrap">
                   <div className="min-w-0">
-                    <h2 className="text-base sm:text-lg font-bold text-white flex items-center gap-2 flex-wrap">
+                    <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 flex-wrap">
                       <span className="truncate">
                         {currentSection === 'favorites'
                           ? isAr
@@ -604,11 +608,11 @@ export default function App() {
                           ? 'جميع الأوامر البرمجية والمهنية'
                           : 'Tous les prompts professionnels'}
                       </span>
-                      <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 shrink-0">
+                      <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-500/20 dark:text-indigo-300 dark:border-indigo-500/30 shrink-0">
                         {filteredPrompts.length}
                       </span>
                     </h2>
-                    <p className="text-xs text-slate-400 mt-0.5 truncate">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 truncate">
                       {isAr
                         ? 'انقر على أي أمر لمعاينة المتغيرات ونسخه بضغطة زر'
                         : 'Cliquez sur un prompt pour personnaliser ses variables et le copier'}
@@ -627,7 +631,7 @@ export default function App() {
                         setSelectedAiModel('all');
                         setSearchQuery('');
                       }}
-                      className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 transition-colors shrink-0"
+                      className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 dark:text-slate-300 dark:hover:text-white dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors shrink-0"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
                       <span>{isAr ? 'إعادة ضبط الفلاتر' : 'Réinitialiser filtres'}</span>
@@ -636,9 +640,9 @@ export default function App() {
                 </div>
 
                 {/* Filter Pills: Levels & AI Models */}
-                <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap pt-2 border-t border-slate-800/80 text-xs w-full min-w-0">
+                <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap pt-2 border-t border-slate-200 dark:border-slate-800/80 text-xs w-full min-w-0">
                   {/* Level selector */}
-                  <span className="text-slate-400 text-[11px] font-semibold uppercase tracking-wider">
+                  <span className="text-slate-500 dark:text-slate-400 text-[11px] font-semibold uppercase tracking-wider">
                     {isAr ? 'المستوى:' : 'Niveau :'}
                   </span>
                   {(['all', 'debutant', 'intermediaire', 'expert'] as const).map(lvl => (
@@ -648,7 +652,7 @@ export default function App() {
                       className={`px-2.5 py-1 rounded-lg transition-all ${
                         selectedLevel === lvl
                           ? 'bg-indigo-600 text-white font-medium shadow-sm'
-                          : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
                       }`}
                     >
                       {lvl === 'all'
@@ -669,10 +673,10 @@ export default function App() {
                     </button>
                   ))}
 
-                  <div className="w-px h-4 bg-slate-800 mx-1 hidden sm:block" />
+                  <div className="w-px h-4 bg-slate-200 dark:bg-slate-800 mx-1 hidden sm:block" />
 
                   {/* AI selector */}
-                  <span className="text-slate-400 text-[11px] font-semibold uppercase tracking-wider">
+                  <span className="text-slate-500 dark:text-slate-400 text-[11px] font-semibold uppercase tracking-wider">
                     {isAr ? 'النموذج:' : 'Modèle :'}
                   </span>
                   {(['all', 'ChatGPT', 'Claude', 'Gemini', 'Cursor'] as const).map(model => (
@@ -682,7 +686,7 @@ export default function App() {
                       className={`px-2.5 py-1 rounded-lg transition-all ${
                         selectedAiModel === model
                           ? 'bg-indigo-600 text-white font-medium shadow-sm'
-                          : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
                       }`}
                     >
                       {model === 'all' ? (isAr ? 'كافة النماذج' : 'Tous') : model}
@@ -715,14 +719,14 @@ export default function App() {
                 </div>
               ) : (
                 /* Empty state */
-                <div className="p-12 rounded-3xl bg-slate-900/40 border border-slate-800/80 text-center space-y-3">
-                  <div className="w-12 h-12 rounded-2xl bg-slate-800/80 flex items-center justify-center text-slate-400 mx-auto">
+                <div className="p-12 rounded-3xl bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/80 text-center space-y-3 shadow-sm">
+                  <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800/80 flex items-center justify-center text-slate-500 dark:text-slate-400 mx-auto">
                     <Search className="w-6 h-6" />
                   </div>
-                  <h3 className="font-bold text-base text-slate-200">
+                  <h3 className="font-bold text-base text-slate-900 dark:text-slate-200">
                     {isAr ? 'لم يتم العثور على أي نتائج' : 'Aucun résultat trouvé'}
                   </h3>
-                  <p className="text-xs text-slate-400 max-w-sm mx-auto">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
                     {isAr
                       ? 'جرب البحث بكلمات أخرى أو قم بإلغاء الفلاتر المحددة.'
                       : 'Essayez d’ajuster votre recherche ou de réinitialiser les filtres actifs.'}

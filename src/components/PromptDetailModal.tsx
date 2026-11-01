@@ -174,35 +174,35 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
   if (!isOpen || !prompt) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 dark:bg-black/75 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
       <div
-        className={`relative w-full flex flex-col rounded-3xl bg-slate-900 border border-slate-700/80 shadow-2xl overflow-hidden my-auto text-slate-100 transition-all duration-300 ${
+        className={`relative w-full flex flex-col rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 shadow-2xl overflow-hidden my-auto text-slate-900 dark:text-slate-100 transition-all duration-300 ${
           isExpanded ? 'max-w-6xl max-h-[96vh] h-[94vh]' : 'max-w-4xl max-h-[92vh]'
         }`}
         onClick={e => e.stopPropagation()}
       >
         {/* Header Bar */}
-        <div className="flex items-center justify-between p-4 sm:p-6 border-b border-slate-800 bg-slate-950/60">
+        <div className="flex items-center justify-between p-4 sm:p-6 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60">
           <div className="flex items-center gap-3">
             <button
               onClick={() => handleCopyAction('slash')}
-              className="group flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-500/15 hover:bg-indigo-500/25 text-indigo-400 border border-indigo-500/30 font-mono text-sm font-bold transition-all"
+              className="group flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 dark:bg-indigo-500/15 dark:hover:bg-indigo-500/25 dark:text-indigo-400 dark:border-indigo-500/30 font-mono text-sm font-bold transition-all"
               title="Copier la commande Slash"
             >
               <Terminal className="w-4 h-4" />
               <span>{prompt.slash}</span>
               {copiedType === 'slash' ? (
-                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                <Check className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400" />
               ) : (
                 <Copy className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" />
               )}
             </button>
 
-            <span className="hidden sm:inline-block px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-medium border border-slate-700">
+            <span className="hidden sm:inline-block px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-slate-700">
               {isAr ? prompt.category_ar : prompt.category_fr}
             </span>
 
-            <span className="text-xs px-2.5 py-1 rounded-lg bg-indigo-950 text-indigo-300 border border-indigo-800 font-medium">
+            <span className="text-xs px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 font-medium">
               {getLevelLabel(prompt.level)}
             </span>
           </div>
@@ -278,24 +278,24 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
         <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 custom-scrollbar">
           {/* Title and Function */}
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 leading-tight">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 leading-tight">
               {isAr ? prompt.title_ar : prompt.title_fr}
             </h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               {isAr ? prompt.function_ar : prompt.function_fr}
             </p>
           </div>
 
           {/* AI Compatibility tags */}
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-xs text-slate-400 flex items-center gap-1 font-medium">
-              <Bot className="w-4 h-4 text-indigo-400" />
+            <span className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1 font-medium">
+              <Bot className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />
               {isAr ? 'متوافق مع:' : 'Compatible avec :'}
             </span>
             {prompt.ai_compatibility.map(ai => (
               <span
                 key={ai}
-                className="text-xs px-2.5 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700/80 font-medium"
+                className="text-xs px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/80 font-medium"
               >
                 {ai}
               </span>
@@ -304,11 +304,11 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
 
           {/* Interactive Variable Filler Section */}
           {allVariables.length > 0 && (
-            <div className="p-4 rounded-2xl bg-indigo-950/30 border border-indigo-500/20 space-y-3">
+            <div className="p-4 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-500/20 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Sliders className="w-4 h-4 text-indigo-400" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-300">
+                  <Sliders className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-700 dark:text-indigo-300">
                     {isAr
                       ? `تخصيص المتغيرات (${allVariables.length})`
                       : `Remplacer les variables (${allVariables.length})`}
@@ -317,7 +317,7 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
                 {Object.values(variableValues).some(v => v.trim() !== '') && (
                   <button
                     onClick={handleResetVariables}
-                    className="flex items-center gap-1 text-[11px] text-slate-400 hover:text-indigo-300 transition-colors"
+                    className="flex items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors"
                   >
                     <RotateCcw className="w-3 h-3" />
                     <span>{isAr ? 'إعادة ضبط' : 'Réinitialiser'}</span>
@@ -328,16 +328,16 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {allVariables.map(v => (
                   <div key={v.key} className="space-y-1">
-                    <label className="text-[11px] font-medium text-slate-300 flex items-center justify-between">
-                      <span className="font-mono text-indigo-300">[{v.key}]</span>
-                      <span className="text-slate-400 text-[10px]">{v.display}</span>
+                    <label className="text-[11px] font-medium text-slate-700 dark:text-slate-300 flex items-center justify-between">
+                      <span className="font-mono text-indigo-600 dark:text-indigo-300">[{v.key}]</span>
+                      <span className="text-slate-500 dark:text-slate-400 text-[10px]">{v.display}</span>
                     </label>
                     <input
                       type="text"
                       value={variableValues[v.key] || ''}
                       onChange={e => handleVariableChange(v.key, e.target.value)}
                       placeholder={isAr ? `أدخل قيمة [${v.key}]...` : `Valeur pour [${v.key}]...`}
-                      className="w-full px-3 py-1.5 text-xs rounded-xl bg-slate-900/90 border border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-100 placeholder:text-slate-400"
+                      className="w-full px-3 py-1.5 text-xs rounded-xl bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700 focus:border-indigo-500 focus:outline-none text-slate-900 dark:text-slate-100 placeholder:text-slate-400 shadow-sm"
                     />
                   </div>
                 ))}
@@ -347,14 +347,14 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
 
           {/* Tabs: FR / AR / Bilingue */}
           <div className="space-y-3">
-            <div className="flex items-center justify-between gap-2 border-b border-slate-800 pb-2">
-              <div className="flex items-center gap-1 p-1 bg-slate-950/70 rounded-xl border border-slate-800">
+            <div className="flex items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-2">
+              <div className="flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-950/70 rounded-xl border border-slate-200 dark:border-slate-800">
                 <button
                   onClick={() => setActiveTab('fr')}
                   className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
                     activeTab === 'fr'
                       ? 'bg-indigo-600 text-white shadow'
-                      : 'text-slate-400 hover:text-slate-200'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                   }`}
                 >
                   Français
@@ -364,7 +364,7 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
                   className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
                     activeTab === 'ar'
                       ? 'bg-indigo-600 text-white shadow'
-                      : 'text-slate-400 hover:text-slate-200'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                   }`}
                 >
                   العربية
@@ -374,7 +374,7 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
                   className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
                     activeTab === 'both'
                       ? 'bg-indigo-600 text-white shadow'
-                      : 'text-slate-400 hover:text-slate-200'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                   }`}
                 >
                   {isAr ? 'كلا النسختين' : 'Bilingue'}
@@ -383,11 +383,11 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
 
               <div className="flex items-center gap-3">
                 {/* Font Size Adjuster for comfortable reading */}
-                <div className="flex items-center gap-1 bg-slate-950/80 p-0.5 rounded-lg border border-slate-800 text-[11px] font-mono">
+                <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-950/80 p-0.5 rounded-lg border border-slate-200 dark:border-slate-800 text-[11px] font-mono">
                   <button
                     onClick={() => setFontSize('sm')}
                     className={`px-1.5 py-0.5 rounded transition-colors ${
-                      fontSize === 'sm' ? 'bg-indigo-600 text-white font-bold' : 'text-slate-400 hover:text-slate-200'
+                      fontSize === 'sm' ? 'bg-indigo-600 text-white font-bold' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                     }`}
                     title="Police normale"
                   >
@@ -396,7 +396,7 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
                   <button
                     onClick={() => setFontSize('base')}
                     className={`px-1.5 py-0.5 rounded transition-colors ${
-                      fontSize === 'base' ? 'bg-indigo-600 text-white font-bold' : 'text-slate-400 hover:text-slate-200'
+                      fontSize === 'base' ? 'bg-indigo-600 text-white font-bold' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                     }`}
                     title="Police moyenne"
                   >
@@ -405,7 +405,7 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
                   <button
                     onClick={() => setFontSize('lg')}
                     className={`px-1.5 py-0.5 rounded transition-colors ${
-                      fontSize === 'lg' ? 'bg-indigo-600 text-white font-bold' : 'text-slate-400 hover:text-slate-200'
+                      fontSize === 'lg' ? 'bg-indigo-600 text-white font-bold' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                     }`}
                     title="Police large pour lecture confortable"
                   >
@@ -413,7 +413,7 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
                   </button>
                 </div>
 
-                <span className="text-[11px] text-slate-400 font-mono hidden sm:inline">
+                <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono hidden sm:inline">
                   {activeTab === 'fr'
                     ? `${replacedFr.length} car.`
                     : activeTab === 'ar'
@@ -427,7 +427,7 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
             {activeTab === 'fr' && (
               <div className="relative group">
                 <pre
-                  className={`p-4 rounded-2xl bg-slate-950 border border-slate-800 font-mono text-slate-200 whitespace-pre-wrap select-text overflow-x-auto custom-scrollbar transition-all ${
+                  className={`p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 font-mono text-slate-800 dark:text-slate-200 whitespace-pre-wrap select-text overflow-x-auto custom-scrollbar transition-all ${
                     isExpanded ? 'max-h-[60vh]' : 'max-h-96'
                   } ${
                     fontSize === 'lg'
@@ -446,7 +446,7 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
               <div className="relative group">
                 <pre
                   dir="rtl"
-                  className={`p-4 rounded-2xl bg-slate-950 border border-slate-800 font-mono text-slate-200 whitespace-pre-wrap select-text overflow-x-auto custom-scrollbar font-tajawal text-right transition-all ${
+                  className={`p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 font-mono text-slate-800 dark:text-slate-200 whitespace-pre-wrap select-text overflow-x-auto custom-scrollbar font-tajawal text-right transition-all ${
                     isExpanded ? 'max-h-[60vh]' : 'max-h-96'
                   } ${
                     fontSize === 'lg'
@@ -464,11 +464,11 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
             {activeTab === 'both' && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <span className="text-[11px] font-semibold text-indigo-400 px-1">
+                  <span className="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400 px-1">
                     Version Française
                   </span>
                   <pre
-                    className={`p-3.5 rounded-2xl bg-slate-950 border border-slate-800 font-mono text-slate-200 whitespace-pre-wrap select-text overflow-x-auto custom-scrollbar transition-all ${
+                    className={`p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 font-mono text-slate-800 dark:text-slate-200 whitespace-pre-wrap select-text overflow-x-auto custom-scrollbar transition-all ${
                       isExpanded ? 'max-h-[60vh]' : 'max-h-96'
                     } ${
                       fontSize === 'lg'
@@ -482,12 +482,12 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
                   </pre>
                 </div>
                 <div className="space-y-1">
-                  <span className="text-[11px] font-semibold text-emerald-400 px-1">
+                  <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 px-1">
                     النسخة العربية
                   </span>
                   <pre
                     dir="rtl"
-                    className={`p-3.5 rounded-2xl bg-slate-950 border border-slate-800 font-mono text-slate-200 whitespace-pre-wrap select-text overflow-x-auto custom-scrollbar font-tajawal text-right transition-all ${
+                    className={`p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 font-mono text-slate-800 dark:text-slate-200 whitespace-pre-wrap select-text overflow-x-auto custom-scrollbar font-tajawal text-right transition-all ${
                       isExpanded ? 'max-h-[60vh]' : 'max-h-96'
                     } ${
                       fontSize === 'lg'
@@ -506,7 +506,7 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
         </div>
 
         {/* Modal Footer: Copy Action Buttons */}
-        <div className="p-4 sm:p-5 border-t border-slate-800 bg-slate-950/90 flex flex-wrap items-center justify-between gap-3">
+        <div className="p-4 sm:p-5 border-t border-slate-200 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-950/90 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2 flex-wrap">
             <button
               onClick={() => handleCopyAction('fr')}
@@ -534,8 +534,8 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
 
             <button
               onClick={() => handleCopyAction('both')}
-              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 transition-all ${
-                copiedType === 'both' ? 'border-emerald-500 text-emerald-300' : ''
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all ${
+                copiedType === 'both' ? 'border-emerald-500 text-emerald-600 dark:text-emerald-300' : ''
               }`}
             >
               <CheckCheck className="w-4 h-4" />
@@ -555,7 +555,7 @@ export const PromptDetailModal: React.FC<PromptDetailModalProps> = ({
 
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="px-4 py-2 rounded-xl text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
           >
             {isAr ? 'إغلاق' : 'Fermer'}
           </button>

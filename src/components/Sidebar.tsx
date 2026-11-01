@@ -100,7 +100,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Sidebar container */}
       <aside
-        className={`fixed md:sticky top-0 md:top-16 z-50 md:z-30 w-72 h-[100dvh] md:h-[calc(100dvh-4rem)] bg-slate-900/95 dark:bg-slate-950/95 border-r border-slate-800/80 flex flex-col transition-all duration-300 ease-in-out shrink-0 overflow-hidden ${
+        className={`fixed md:sticky top-0 md:top-16 z-50 md:z-30 w-72 h-[100dvh] md:h-[calc(100dvh-4rem)] bg-white/95 dark:bg-slate-950/95 border-r border-slate-200 dark:border-slate-800/80 flex flex-col transition-all duration-300 ease-in-out shrink-0 overflow-hidden ${
           isAr ? 'right-0 border-l border-r-0' : 'left-0'
         } ${
           isReaderMode ? 'md:hidden' : ''
@@ -113,16 +113,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
         }`}
       >
         {/* Mobile Header */}
-        <div className="md:hidden flex items-center justify-between p-4 border-b border-slate-800">
+        <div className="md:hidden flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-indigo-400" />
-            <span className="font-bold text-slate-100">
+            <Sparkles className="w-5 h-5 text-indigo-500 dark:text-indigo-400" />
+            <span className="font-bold text-slate-900 dark:text-slate-100">
               {isAr ? 'مكتبة الأوامر' : 'Prompt Master'}
             </span>
           </div>
           <button
             onClick={onCloseMobile}
-            className="text-slate-400 hover:text-white p-1 rounded-lg"
+            className="text-slate-400 hover:text-slate-700 dark:hover:text-white p-1 rounded-lg"
           >
             ✕
           </button>
@@ -153,20 +153,20 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 onClick={() => handleNavClick(item.id, null)}
                 className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all ${
                   isActive
-                    ? 'bg-indigo-600/15 text-indigo-400 border border-indigo-500/30'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                    ? 'bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-600/15 dark:text-indigo-400 dark:border-indigo-500/30 font-semibold'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800/50'
                 }`}
               >
                 <div className="flex items-center gap-2.5">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-indigo-400' : 'text-slate-400'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400 dark:text-slate-500'}`} />
                   <span>{isAr ? item.label_ar : item.label_fr}</span>
                 </div>
                 {item.count !== null && item.count !== undefined && (
                   <span
                     className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
                       isActive
-                        ? 'bg-indigo-500/20 text-indigo-300'
-                        : 'bg-slate-800 text-slate-400'
+                        ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300'
+                        : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
                     }`}
                   >
                     {item.count}
@@ -179,13 +179,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         {/* Category Heading */}
         <div className="px-4 pt-4 pb-2 flex items-center justify-between">
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
             {isAr ? 'التصنيفات (٢٠ تصنيف)' : 'Catégories (20)'}
           </span>
           {selectedCategory && (
             <button
               onClick={() => onSelectCategory(null)}
-              className="text-[10px] text-indigo-400 hover:text-indigo-300 font-medium"
+              className="text-[10px] text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 font-medium"
             >
               {isAr ? 'عرض الكل' : 'Tout afficher'}
             </button>
@@ -205,16 +205,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 onClick={() => handleNavClick('prompts', cat.id)}
                 className={`w-full group flex items-center justify-between px-2.5 py-1.5 rounded-xl text-xs transition-all text-start ${
                   isCatActive
-                    ? 'bg-indigo-600/20 text-white font-medium border border-indigo-500/40 shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+                    ? 'bg-indigo-50 text-indigo-700 font-semibold border border-indigo-200 shadow-sm dark:bg-indigo-600/20 dark:text-white dark:border-indigo-500/40'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800/40'
                 }`}
               >
                 <div className="flex items-center gap-2 min-w-0">
                   <span
                     className={`p-1 rounded-lg ${
                       isCatActive
-                        ? 'bg-indigo-500/30 text-indigo-300'
-                        : 'bg-slate-800 text-slate-400 group-hover:text-slate-300'
+                        ? 'bg-indigo-200/60 text-indigo-700 dark:bg-indigo-500/30 dark:text-indigo-300'
+                        : 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300'
                     }`}
                   >
                     <CategoryIcon name={cat.icon_name} className="w-3.5 h-3.5" />
@@ -223,7 +223,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     {isAr ? cat.title_ar : cat.title_fr}
                   </span>
                 </div>
-                <span className="text-[10px] text-slate-400 shrink-0 ps-1 font-mono">
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 shrink-0 ps-1 font-mono">
                   {count}
                 </span>
               </button>
@@ -232,15 +232,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Bottom utility links: Export/Import & Reset */}
-        <div className="p-3 border-t border-slate-800/80 bg-slate-950/40 space-y-1">
+        <div className="p-3 border-t border-slate-200 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-950/40 space-y-1">
           <button
             onClick={() => {
               onOpenExportImport();
               onCloseMobile();
             }}
-            className="w-full flex items-center justify-center gap-2 px-3 py-2 text-xs font-medium rounded-xl text-slate-300 hover:text-white bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 transition-colors"
+            className="w-full flex items-center justify-center gap-2 px-3 py-2 text-xs font-medium rounded-xl text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/60 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700/60 transition-colors"
           >
-            <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-400" />
+            <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
             <span>{isAr ? 'استيراد وتصدير CSV / JSON' : 'Export & Import CSV / JSON'}</span>
           </button>
         </div>

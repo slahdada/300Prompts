@@ -59,7 +59,7 @@ export const PWAInstallBanner: React.FC<PWAInstallBannerProps> = ({
 
   return (
     <div
-      className={`fixed bottom-3 inset-x-3 sm:inset-x-auto sm:end-4 z-40 max-w-md mx-auto p-3.5 rounded-2xl bg-slate-900/95 dark:bg-slate-900/95 border border-indigo-500/40 text-slate-100 shadow-2xl backdrop-blur-xl animate-in slide-in-from-bottom-4 duration-300 ${
+      className={`fixed bottom-3 inset-x-3 sm:inset-x-auto sm:end-4 z-40 max-w-md mx-auto p-3.5 rounded-2xl bg-white/95 dark:bg-slate-900/95 border border-indigo-200 dark:border-indigo-500/40 text-slate-900 dark:text-slate-100 shadow-2xl backdrop-blur-xl animate-in slide-in-from-bottom-4 duration-300 ${
         isAr ? 'sm:start-4 sm:end-auto' : ''
       }`}
     >
@@ -70,10 +70,10 @@ export const PWAInstallBanner: React.FC<PWAInstallBannerProps> = ({
           </div>
 
           <div className="min-w-0">
-            <h4 className="font-bold text-xs sm:text-sm text-white truncate">
+            <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white truncate">
               {isAr ? 'تثبيت Prompt Master Library' : 'Installer Prompt Master'}
             </h4>
-            <p className="text-[11px] text-emerald-400 truncate font-medium">
+            <p className="text-[11px] text-emerald-600 dark:text-emerald-400 truncate font-medium">
               {isAr
                 ? 'وصول فوري وشاشة كاملة بدون إنترنت'
                 : '100% Hors-ligne & plein écran'}
@@ -92,7 +92,7 @@ export const PWAInstallBanner: React.FC<PWAInstallBannerProps> = ({
 
           <button
             onClick={handleDismiss}
-            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             aria-label="Fermer"
           >
             <X className="w-4 h-4" />

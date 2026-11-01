@@ -239,7 +239,7 @@ export const SearchAutocomplete: React.FC<SearchAutocompleteProps> = ({
               ? 'ابحث بالأمر السريع / أو العنوان أو الكلمات المفتاحية...'
               : 'Recherche par commande /dev, mot-clé, titre...'
           }
-          className={`w-full ps-10 pe-16 rounded-xl bg-slate-800/60 dark:bg-slate-900/60 border border-slate-700/60 hover:border-slate-600 focus:border-indigo-500/70 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 text-slate-200 placeholder:text-slate-400 transition-all ${
+          className={`w-full ps-10 pe-16 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-300 dark:border-slate-700/60 hover:border-slate-400 dark:hover:border-slate-600 focus:border-indigo-500/70 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 text-slate-900 dark:text-slate-200 placeholder:text-slate-500 dark:placeholder:text-slate-400 transition-all ${
             isMobile ? 'py-2 text-xs' : 'py-2 text-sm'
           }`}
           autoComplete="off"
@@ -251,13 +251,13 @@ export const SearchAutocomplete: React.FC<SearchAutocompleteProps> = ({
           {searchQuery ? (
             <button
               onClick={clearSearch}
-              className="p-1 rounded-md text-slate-400 hover:text-white hover:bg-slate-700/60 transition-colors"
+              className="p-1 rounded-md text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700/60 transition-colors"
               title={isAr ? 'مسح البحث' : 'Effacer la recherche'}
             >
               <X className="w-3.5 h-3.5" />
             </button>
           ) : (
-            <span className="hidden sm:flex text-[11px] font-mono px-1.5 py-0.5 rounded bg-slate-700/60 text-slate-400 border border-slate-600/50 items-center gap-0.5 pointer-events-none select-none">
+            <span className="hidden sm:flex text-[11px] font-mono px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700/60 text-slate-600 dark:text-slate-400 border border-slate-300 dark:border-slate-600/50 items-center gap-0.5 pointer-events-none select-none">
               <Terminal className="w-3 h-3" /> /
             </span>
           )}
@@ -266,10 +266,10 @@ export const SearchAutocomplete: React.FC<SearchAutocompleteProps> = ({
 
       {/* Autocomplete Suggestions Dropdown */}
       {isOpen && searchQuery.trim().length > 0 && (
-        <div className="absolute top-full mt-2 inset-x-0 z-50 rounded-2xl bg-slate-900/95 border border-slate-700/80 shadow-2xl backdrop-blur-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150 text-slate-100">
+        <div className="absolute top-full mt-2 inset-x-0 z-50 rounded-2xl bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-slate-700/80 shadow-2xl backdrop-blur-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150 text-slate-800 dark:text-slate-100">
           {suggestions.length > 0 ? (
             <div className="py-2">
-              <div className="px-3.5 py-1.5 flex items-center justify-between text-[11px] font-semibold text-slate-400 uppercase tracking-wider border-b border-slate-800/80 mb-1">
+              <div className="px-3.5 py-1.5 flex items-center justify-between text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider border-b border-slate-200 dark:border-slate-800/80 mb-1">
                 <span>
                   {isAr ? 'الاقتراحات المطابقة' : 'Suggestions automatiques'}
                 </span>
@@ -290,7 +290,7 @@ export const SearchAutocomplete: React.FC<SearchAutocompleteProps> = ({
                       className={`w-full flex items-center justify-between p-2.5 rounded-xl transition-all text-start group ${
                         isSelected
                           ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-                          : 'hover:bg-slate-800/60 text-slate-200'
+                          : 'hover:bg-slate-100 dark:hover:bg-slate-800/60 text-slate-800 dark:text-slate-200'
                       }`}
                     >
                       <div className="flex items-center gap-3 min-w-0">
@@ -384,13 +384,13 @@ export const SearchAutocomplete: React.FC<SearchAutocompleteProps> = ({
               </div>
 
               {/* Footer hint */}
-              <div className="px-3 py-2 mt-1 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-400 bg-slate-950/40">
+              <div className="px-3 py-2 mt-1 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-[10px] text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-950/40">
                 <span>
                   {isAr
                     ? 'استخدم ↑↓ للتنقل، و Enter للاختيار'
                     : 'Utilisez ↑↓ pour naviguer, Entrée pour valider'}
                 </span>
-                <span className="font-medium text-indigo-400">
+                <span className="font-medium text-indigo-600 dark:text-indigo-400">
                   {isAr ? 'ESC للإغلاق' : 'Échap pour fermer'}
                 </span>
               </div>

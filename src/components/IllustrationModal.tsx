@@ -69,22 +69,22 @@ export const IllustrationModal: React.FC<IllustrationModalProps> = ({
   if (!isOpen || !prompt) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 dark:bg-black/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
       <div
-        className="relative w-full max-w-lg rounded-3xl bg-slate-900 border border-slate-700/80 shadow-2xl overflow-hidden my-auto text-slate-100 flex flex-col"
+        className="relative w-full max-w-lg rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 shadow-2xl overflow-hidden my-auto text-slate-900 dark:text-slate-100 flex flex-col"
         onClick={e => e.stopPropagation()}
       >
         {/* Header Bar */}
-        <div className="flex items-center justify-between p-4 sm:p-5 border-b border-slate-800 bg-slate-950/60">
+        <div className="flex items-center justify-between p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60">
           <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white shadow-md shadow-indigo-500/20">
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-bold text-sm sm:text-base text-white flex items-center gap-2">
+              <h3 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white flex items-center gap-2">
                 <span>{isAr ? 'تجسيد بصري بالذكاء الاصطناعي' : 'Illustration IA du prompt'}</span>
               </h3>
-              <span className="font-mono text-[11px] text-indigo-400">
+              <span className="font-mono text-[11px] text-indigo-600 dark:text-indigo-400">
                 {prompt.slash}
               </span>
             </div>
@@ -92,7 +92,7 @@ export const IllustrationModal: React.FC<IllustrationModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+            className="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
             aria-label="Fermer"
           >
             <X className="w-5 h-5" />
@@ -104,16 +104,16 @@ export const IllustrationModal: React.FC<IllustrationModalProps> = ({
           {isLoading ? (
             <div className="flex flex-col items-center justify-center py-10 space-y-4 text-center">
               <div className="relative">
-                <div className="w-16 h-16 rounded-2xl bg-indigo-500/20 border border-indigo-500/40 animate-pulse flex items-center justify-center">
-                  <RefreshCw className="w-8 h-8 text-indigo-400 animate-spin" />
+                <div className="w-16 h-16 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 animate-pulse flex items-center justify-center">
+                  <RefreshCw className="w-8 h-8 text-indigo-600 dark:text-indigo-400 animate-spin" />
                 </div>
                 <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-cyan-400 animate-ping" />
               </div>
               <div>
-                <p className="font-bold text-sm text-slate-100">
+                <p className="font-bold text-sm text-slate-900 dark:text-slate-100">
                   {isAr ? 'جارٍ توليد الصورة بالذكاء الاصطناعي...' : 'Génération de l’illustration IA en cours...'}
                 </p>
-                <p className="text-xs text-slate-400 mt-1 max-w-xs">
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-xs">
                   {isAr
                     ? `جاري تجسيد موضوع "${prompt.title_ar || prompt.title_fr}" بتقنية 3D الرقمية...`
                     : `Création du concept 3D représentant « ${prompt.title_fr} »...`}
@@ -122,20 +122,20 @@ export const IllustrationModal: React.FC<IllustrationModalProps> = ({
             </div>
           ) : error ? (
             <div className="flex flex-col items-center justify-center py-6 text-center space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-400">
+              <div className="w-12 h-12 rounded-2xl bg-rose-500/15 border border-rose-500/30 flex items-center justify-center text-rose-500 dark:text-rose-400">
                 <AlertCircle className="w-6 h-6" />
               </div>
               <div>
-                <p className="font-bold text-sm text-rose-300">
+                <p className="font-bold text-sm text-rose-600 dark:text-rose-300">
                   {isAr ? 'تعذر توليد الصورة' : 'Erreur lors de la génération'}
                 </p>
-                <p className="text-xs text-slate-400 mt-1 max-w-sm px-4">
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-sm px-4">
                   {error}
                 </p>
               </div>
               <button
                 onClick={onRegenerate}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md transition-all hover:scale-105"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md transition-all hover:scale-105 active:scale-95"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
                 <span>{isAr ? 'إعادة المحاولة' : 'Réessayer la génération'}</span>
@@ -143,7 +143,7 @@ export const IllustrationModal: React.FC<IllustrationModalProps> = ({
             </div>
           ) : imageUrl ? (
             <div className="w-full space-y-3 animate-in fade-in zoom-in-95 duration-200">
-              <div className="relative group overflow-hidden rounded-2xl border border-indigo-500/30 bg-slate-950 shadow-xl aspect-square flex items-center justify-center">
+              <div className="relative group overflow-hidden rounded-2xl border border-indigo-200 dark:border-indigo-500/30 bg-slate-100 dark:bg-slate-950 shadow-xl aspect-square flex items-center justify-center">
                 <img
                   src={imageUrl}
                   alt={prompt.title_fr}
@@ -155,9 +155,9 @@ export const IllustrationModal: React.FC<IllustrationModalProps> = ({
                 </div>
               </div>
 
-              <div className="flex items-center justify-between text-[11px] text-slate-400 px-1">
+              <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 px-1">
                 <span className="flex items-center gap-1">
-                  <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+                  <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
                   <span>{isAr ? 'صورة رقمية 3D حصرية' : 'Modèle Gemini 3D Concept Art'}</span>
                 </span>
                 <span className="font-mono">1024 × 1024 px</span>
@@ -165,7 +165,7 @@ export const IllustrationModal: React.FC<IllustrationModalProps> = ({
             </div>
           ) : (
             <div className="text-center py-8 text-slate-400 space-y-2">
-              <ImageIcon className="w-12 h-12 mx-auto text-slate-600" />
+              <ImageIcon className="w-12 h-12 mx-auto text-slate-400 dark:text-slate-600" />
               <p className="text-xs">
                 {isAr ? 'اضغط على الزر أدناه لتوليد الصورة' : 'Cliquez ci-dessous pour lancer la génération'}
               </p>
@@ -174,12 +174,12 @@ export const IllustrationModal: React.FC<IllustrationModalProps> = ({
         </div>
 
         {/* Footer Actions */}
-        <div className="p-4 sm:p-5 border-t border-slate-800 bg-slate-950/90 flex items-center justify-between gap-2">
+        <div className="p-4 sm:p-5 border-t border-slate-200 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-950/90 flex items-center justify-between gap-2">
           {imageUrl && !isLoading ? (
             <div className="flex items-center gap-2">
               <button
                 onClick={handleDownload}
-                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/30 transition-all hover:scale-105"
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>{isAr ? 'تحميل PNG' : 'Télécharger'}</span>
@@ -187,16 +187,16 @@ export const IllustrationModal: React.FC<IllustrationModalProps> = ({
 
               <button
                 onClick={handleCopyImage}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition-colors"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-medium border border-slate-300 dark:border-slate-700 transition-colors shadow-sm"
                 title="Copier l'image"
               >
-                {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copied ? (isAr ? 'تم النسخ' : 'Copié !') : isAr ? 'نسخ' : 'Copier'}</span>
               </button>
 
               <button
                 onClick={onRegenerate}
-                className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-colors"
+                className="p-2 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-300 dark:border-slate-700 transition-colors shadow-sm"
                 title={isAr ? 'إعادة التوليد' : 'Régénérer une autre variante'}
               >
                 <RefreshCw className="w-4 h-4" />
@@ -208,7 +208,7 @@ export const IllustrationModal: React.FC<IllustrationModalProps> = ({
 
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="px-4 py-2 rounded-xl text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
           >
             {isAr ? 'إغلاق' : 'Fermer'}
           </button>

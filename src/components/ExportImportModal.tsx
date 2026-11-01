@@ -144,22 +144,22 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md animate-in fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 dark:bg-black/75 backdrop-blur-md animate-in fade-in">
       <div
-        className="w-full max-w-xl rounded-3xl bg-slate-900 border border-slate-700/80 p-5 sm:p-6 shadow-2xl text-slate-100 space-y-5"
+        className="w-full max-w-xl rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 p-5 sm:p-6 shadow-2xl text-slate-900 dark:text-slate-100 space-y-5"
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-400">
+            <div className="p-2 rounded-xl bg-indigo-50 dark:bg-indigo-500/15 border border-indigo-200 dark:border-indigo-500/30 text-indigo-600 dark:text-indigo-400">
               <FileSpreadsheet className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-base sm:text-lg font-bold">
+              <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
                 {isAr ? 'النسخ الاحتياطي والاستيراد والتصدير' : 'Sauvegarde, Export & Import'}
               </h2>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 {isAr
                   ? `إدارة ${prompts.length} أمراً في قاعدة بياناتك المحلية`
                   : `Gérer les ${prompts.length} prompts de votre stockage local`}
@@ -168,7 +168,7 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg"
+            className="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -179,8 +179,8 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
           <div
             className={`p-3 rounded-xl text-xs flex items-center gap-2 border ${
               feedback.type === 'success'
-                ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
-                : 'bg-rose-500/10 border-rose-500/30 text-rose-300'
+                ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:text-emerald-300'
+                : 'bg-rose-500/10 border-rose-500/30 text-rose-600 dark:text-rose-300'
             }`}
           >
             {feedback.type === 'success' ? (
@@ -194,22 +194,22 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
 
         {/* Export Options */}
         <div className="space-y-2">
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
             {isAr ? 'تصدير البيانات' : 'Exporter les données'}
           </span>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <button
               onClick={handleExportCsv}
-              className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-950/80 hover:bg-slate-800/80 border border-slate-800 hover:border-emerald-500/40 transition-all text-start group"
+              className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-950/80 dark:hover:bg-slate-800/80 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/40 transition-all text-start group shadow-sm"
             >
-              <div className="p-2.5 rounded-xl bg-emerald-500/15 text-emerald-400 border border-emerald-500/20 group-hover:scale-105 transition-transform">
+              <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20 group-hover:scale-105 transition-transform">
                 <FileSpreadsheet className="w-5 h-5" />
               </div>
               <div>
-                <span className="block text-xs font-bold text-slate-100 group-hover:text-emerald-300 transition-colors">
+                <span className="block text-xs font-bold text-slate-800 dark:text-slate-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
                   CSV UTF-8 (Excel)
                 </span>
-                <span className="text-[11px] text-slate-400">
+                <span className="text-[11px] text-slate-500 dark:text-slate-400">
                   {isAr ? 'متوافق مع ويندوز وإكسل' : 'Avec BOM UTF-8 Windows 11'}
                 </span>
               </div>
@@ -217,16 +217,16 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
 
             <button
               onClick={handleExportJson}
-              className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-950/80 hover:bg-slate-800/80 border border-slate-800 hover:border-indigo-500/40 transition-all text-start group"
+              className="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-950/80 dark:hover:bg-slate-800/80 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/40 transition-all text-start group shadow-sm"
             >
-              <div className="p-2.5 rounded-xl bg-indigo-500/15 text-indigo-400 border border-indigo-500/20 group-hover:scale-105 transition-transform">
+              <div className="p-2.5 rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-500/15 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/20 group-hover:scale-105 transition-transform">
                 <FileJson className="w-5 h-5" />
               </div>
               <div>
-                <span className="block text-xs font-bold text-slate-100 group-hover:text-indigo-300 transition-colors">
+                <span className="block text-xs font-bold text-slate-800 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
                   Sauvegarde JSON
                 </span>
-                <span className="text-[11px] text-slate-400">
+                <span className="text-[11px] text-slate-500 dark:text-slate-400">
                   {isAr ? 'نسخة احتياطية كاملة' : 'Fichier complet avec métadonnées'}
                 </span>
               </div>
@@ -236,7 +236,7 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
 
         {/* Import Option */}
         <div className="space-y-2">
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
             {isAr ? 'استيراد الأوامر' : 'Importer des prompts'}
           </span>
           <input
@@ -248,10 +248,10 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
           />
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="w-full flex items-center justify-center gap-2 p-4 rounded-2xl border-2 border-dashed border-slate-700 hover:border-indigo-500/60 bg-slate-950/50 hover:bg-slate-800/40 transition-all group cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 p-4 rounded-2xl border-2 border-dashed border-slate-300 hover:border-indigo-500/60 dark:border-slate-700 dark:hover:border-indigo-500/60 bg-slate-50 hover:bg-slate-100/80 dark:bg-slate-950/50 dark:hover:bg-slate-800/40 transition-all group cursor-pointer"
           >
-            <Upload className="w-5 h-5 text-slate-400 group-hover:text-indigo-400 transition-colors" />
-            <span className="text-xs font-medium text-slate-300 group-hover:text-indigo-300 transition-colors">
+            <Upload className="w-5 h-5 text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors" />
+            <span className="text-xs font-medium text-slate-600 dark:text-slate-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
               {isAr
                 ? 'انقر لرفع ملف CSV أو JSON لاستيراد الأوامر'
                 : 'Cliquer pour charger un fichier CSV ou JSON'}
@@ -260,10 +260,10 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
         </div>
 
         {/* Reset to 300 defaults */}
-        <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
+        <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <button
             onClick={handleReset}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>{isAr ? 'استعادة 300 أمر الأساسية' : 'Restaurer les 300 prompts par défaut'}</span>
@@ -271,7 +271,7 @@ export const ExportImportModal: React.FC<ExportImportModalProps> = ({
 
           <button
             onClick={onClose}
-            className="px-4 py-1.5 rounded-xl text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors"
+            className="px-4 py-1.5 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 transition-colors"
           >
             {isAr ? 'تم' : 'Terminer'}
           </button>

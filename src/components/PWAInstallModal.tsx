@@ -41,29 +41,29 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-in fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/75 backdrop-blur-md animate-in fade-in">
       <div
-        className="w-full max-w-md rounded-3xl bg-slate-900 border border-slate-700/80 p-6 shadow-2xl text-slate-100 space-y-5"
+        className="w-full max-w-md rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 p-6 shadow-2xl text-slate-900 dark:text-slate-100 space-y-5"
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-2.5">
             <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20">
               <Download className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-white">
+              <h2 className="text-base font-bold text-slate-900 dark:text-white">
                 {isAr ? 'تثبيت التطبيق على جهازك' : 'Installer l’application PWA'}
               </h2>
-              <span className="text-xs text-emerald-400 font-medium">
+              <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
                 {isAr ? 'يعمل بدون إنترنت وتجربة شاشة كاملة' : 'Accès hors-ligne & plein écran'}
               </span>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg"
+            className="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -71,13 +71,13 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({
 
         {/* Status already installed */}
         {isInstalled ? (
-          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 flex items-center gap-3">
+          <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-300 flex items-center gap-3">
             <CheckCircle2 className="w-6 h-6 shrink-0" />
             <div className="text-xs">
               <p className="font-bold">
                 {isAr ? 'التطبيق مثبت بالفعل!' : 'Application déjà installée !'}
               </p>
-              <p className="text-slate-400 mt-0.5">
+              <p className="text-slate-600 dark:text-slate-400 mt-0.5">
                 {isAr
                   ? 'يمكنك تشغيل Prompt Master Library مباشرة من شاشتك الرئيسية.'
                   : 'Vous pouvez lancer Prompt Master Library depuis votre écran d’accueil.'}
@@ -87,7 +87,7 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({
         ) : isInstallable ? (
           /* Native install button available */
           <div className="space-y-4">
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
               {isAr
                 ? 'استمتع بالوصول السريع إلى 300 أمر ذكاء اصطناعي بنقرة واحدة، دون الحاجة لمتجر التطبيقات وبميزة العمل دون اتصال بالإنترنت.'
                 : 'Installez l’application directement sur votre smartphone Android, iPhone ou PC Windows pour un accès instantané en 1 clic.'}
@@ -104,34 +104,34 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({
         ) : isIOS ? (
           /* iOS Step-by-Step Instructions */
           <div className="space-y-3">
-            <p className="text-xs text-slate-300">
+            <p className="text-xs text-slate-600 dark:text-slate-300">
               {isAr
                 ? 'لتثبيت التطبيق على جهاز iPhone أو iPad :'
                 : 'Pour installer l’application sur votre iPhone ou iPad :'}
             </p>
-            <ol className="space-y-2.5 text-xs text-slate-300 ps-1">
-              <li className="flex items-center gap-2.5 p-2 rounded-xl bg-slate-950/60 border border-slate-800">
-                <span className="w-5 h-5 rounded-full bg-slate-800 text-indigo-400 font-bold flex items-center justify-center text-[10px] shrink-0">
+            <ol className="space-y-2.5 text-xs text-slate-600 dark:text-slate-300 ps-1">
+              <li className="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
+                <span className="w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 font-bold flex items-center justify-center text-[10px] shrink-0">
                   1
                 </span>
                 <span className="flex items-center gap-1.5">
                   {isAr ? 'اضغط على زر المشاركة' : 'Appuyez sur le bouton Partager'}
-                  <Share className="w-4 h-4 text-indigo-400 inline" />
+                  <Share className="w-4 h-4 text-indigo-600 dark:text-indigo-400 inline" />
                 </span>
               </li>
-              <li className="flex items-center gap-2.5 p-2 rounded-xl bg-slate-950/60 border border-slate-800">
-                <span className="w-5 h-5 rounded-full bg-slate-800 text-indigo-400 font-bold flex items-center justify-center text-[10px] shrink-0">
+              <li className="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
+                <span className="w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 font-bold flex items-center justify-center text-[10px] shrink-0">
                   2
                 </span>
                 <span className="flex items-center gap-1.5">
                   {isAr
                     ? 'اختر "إضافة إلى الشاشة الرئيسية"'
                     : 'Sélectionnez « Sur l’écran d’accueil »'}
-                  <PlusSquare className="w-4 h-4 text-indigo-400 inline" />
+                  <PlusSquare className="w-4 h-4 text-indigo-600 dark:text-indigo-400 inline" />
                 </span>
               </li>
-              <li className="flex items-center gap-2.5 p-2 rounded-xl bg-slate-950/60 border border-slate-800">
-                <span className="w-5 h-5 rounded-full bg-slate-800 text-indigo-400 font-bold flex items-center justify-center text-[10px] shrink-0">
+              <li className="flex items-center gap-2.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
+                <span className="w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 font-bold flex items-center justify-center text-[10px] shrink-0">
                   3
                 </span>
                 <span>{isAr ? 'اضغط على "إضافة"' : 'Confirmez en touchant « Ajouter »'}</span>
@@ -140,13 +140,13 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({
           </div>
         ) : (
           /* Desktop / Chrome fallback Instructions */
-          <div className="space-y-3 text-xs text-slate-300">
+          <div className="space-y-3 text-xs text-slate-600 dark:text-slate-300">
             <p>
               {isAr
                 ? 'لتثبيت التطبيق على جهاز الكمبيوتر أو المتصفح :'
                 : 'Pour installer l’application sur votre ordinateur :'}
             </p>
-            <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 space-y-1">
+            <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-1">
               <p>
                 {isAr
                   ? 'انقر على أيقونة التثبيت (⤓) في شريط عنوان المتصفح أو قائمة الخيارات (⋮) ثم اختر "تثبيت Prompt Master Library".'
@@ -159,7 +159,7 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({
         <div className="pt-2 flex justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200"
+            className="px-4 py-2 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 text-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 transition-colors"
           >
             {isAr ? 'إغلاق' : 'Fermer'}
           </button>

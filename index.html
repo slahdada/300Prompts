@@ -28,8 +28,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Instant Theme Initializer to prevent light/dark flash -->
+    <script>
+      (function() {
+        try {
+          var t = localStorage.getItem('pml_theme_v1');
+          if (t === 'light') {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.setAttribute('data-theme', 'light');
+          } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.setAttribute('data-theme', 'dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white min-h-screen w-full max-w-full overflow-x-hidden">
+  <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased selection:bg-indigo-500 selection:text-white min-h-screen w-full max-w-full overflow-x-hidden transition-colors">
     <div id="root" class="w-full max-w-full overflow-x-hidden"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

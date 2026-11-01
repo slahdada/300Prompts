@@ -80,13 +80,13 @@ export const PromptCard: React.FC<PromptCardProps> = ({
   return (
     <div
       onClick={() => onSelectPrompt(prompt)}
-      className="group relative flex flex-col justify-between p-3.5 sm:p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-900/90 dark:bg-slate-900/60 dark:hover:bg-slate-800/80 border border-slate-800 hover:border-indigo-500/50 shadow-lg hover:shadow-indigo-500/10 transition-all duration-200 cursor-pointer text-start w-full min-w-0 max-w-full overflow-hidden"
+      className="group relative flex flex-col justify-between p-3.5 sm:p-5 rounded-2xl bg-white hover:bg-slate-50/90 dark:bg-slate-900/60 dark:hover:bg-slate-800/80 border border-slate-200 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-500/50 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer text-start w-full min-w-0 max-w-full overflow-hidden"
     >
       <div>
         {/* Top Header: Slash Command + Level Badge + Favorite */}
         <div className="flex items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-1.5 flex-wrap min-w-0">
-            <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-400 border border-indigo-500/30 group-hover:bg-indigo-500/25 transition-colors break-all">
+            <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-500/15 dark:text-indigo-400 dark:border-indigo-500/30 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-500/25 transition-colors break-all">
               {prompt.slash}
             </span>
 
@@ -101,8 +101,8 @@ export const PromptCard: React.FC<PromptCardProps> = ({
             onClick={e => onToggleFavorite(prompt.id, e)}
             className={`p-1.5 rounded-lg transition-all ${
               isFavorite
-                ? 'text-amber-400 bg-amber-400/15'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                ? 'text-amber-500 bg-amber-500/15'
+                : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
             title={isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
           >
@@ -111,17 +111,17 @@ export const PromptCard: React.FC<PromptCardProps> = ({
         </div>
 
         {/* Title */}
-        <h3 className="font-semibold text-slate-100 text-sm sm:text-base leading-snug line-clamp-2 mb-1.5 group-hover:text-indigo-300 transition-colors">
+        <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-sm sm:text-base leading-snug line-clamp-2 mb-1.5 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
           {isAr ? prompt.title_ar : prompt.title_fr}
         </h3>
 
         {/* Function / Subtitle */}
-        <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed mb-3">
+        <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed mb-3">
           {isAr ? prompt.function_ar : prompt.function_fr}
         </p>
 
         {/* Prompt snippet preview */}
-        <div className="p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/60 font-mono text-[11px] text-slate-400 line-clamp-2 mb-3 select-none">
+        <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/60 font-mono text-[11px] text-slate-600 dark:text-slate-400 line-clamp-2 mb-3 select-none">
           {isAr ? prompt.prompt_ar.slice(0, 140) : prompt.prompt_fr.slice(0, 140)}...
         </div>
       </div>
@@ -129,9 +129,9 @@ export const PromptCard: React.FC<PromptCardProps> = ({
       {/* Bottom Footer: Meta & Copy Buttons */}
       <div>
         {/* Compatibility and Variable badges */}
-        <div className="flex items-center justify-between gap-1 mb-3 pt-2 border-t border-slate-800/70 text-[11px] text-slate-400">
+        <div className="flex items-center justify-between gap-1 mb-3 pt-2 border-t border-slate-200 dark:border-slate-800/70 text-[11px] text-slate-500 dark:text-slate-400">
           <div className="flex items-center gap-1.5 overflow-hidden">
-            <Bot className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+            <Bot className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400 shrink-0" />
             <span className="truncate max-w-[140px]">
               {prompt.ai_compatibility.slice(0, 2).join(', ')}
               {prompt.ai_compatibility.length > 2 ? ` +${prompt.ai_compatibility.length - 2}` : ''}
@@ -139,8 +139,8 @@ export const PromptCard: React.FC<PromptCardProps> = ({
           </div>
 
           {variableCount > 0 && (
-            <span className="flex items-center gap-1 text-[10px] text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded-md shrink-0">
-              <Sliders className="w-3 h-3 text-cyan-400" />
+            <span className="flex items-center gap-1 text-[10px] text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-md shrink-0">
+              <Sliders className="w-3 h-3 text-cyan-600 dark:text-cyan-400" />
               <span>{variableCount} var</span>
             </span>
           )}
@@ -153,7 +153,7 @@ export const PromptCard: React.FC<PromptCardProps> = ({
             className={`flex items-center justify-center gap-1.5 py-1.5 px-2.5 rounded-xl text-xs font-semibold transition-all ${
               copiedFr
                 ? 'bg-emerald-600 text-white'
-                : 'bg-slate-800 hover:bg-indigo-600/80 text-slate-200 hover:text-white border border-slate-700/60'
+                : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-indigo-600/80 text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-700/60'
             }`}
             title="Copier le prompt en Français"
           >
@@ -166,7 +166,7 @@ export const PromptCard: React.FC<PromptCardProps> = ({
             className={`flex items-center justify-center gap-1.5 py-1.5 px-2.5 rounded-xl text-xs font-semibold transition-all ${
               copiedAr
                 ? 'bg-emerald-600 text-white'
-                : 'bg-slate-800 hover:bg-indigo-600/80 text-slate-200 hover:text-white border border-slate-700/60'
+                : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-indigo-600/80 text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-700/60'
             }`}
             title="نسخ الأمر بالعربية"
           >
